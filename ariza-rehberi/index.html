@@ -132,6 +132,12 @@
     ekran.innerHTML = "";
     geri(() => turEkrani(model));
     baslik("4. Ekrandaki kodu yazın");
+    const md = model && MODELLER[marka][model];
+    if (md && md.not) bilgi(md.not);
+    if (md && !md.kodlar.length) {
+      ozelWp("Merhaba, arıza rehberinden geliyorum. " + marka + " " + model + " · Ekrandaki kod/simge: ");
+      return;
+    }
     if (!model) bilgi("Modelinizi bilmediğiniz için tüm " + marka + " modellerindeki eşleşmeleri gösteriyoruz. Ekrandaki kod modele göre farklı anlam taşıyabilir.");
     const ara = document.createElement("input");
     ara.className = "ara";

@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scooter Arıza Rehberi | E-Scooter Tamir Merkezi Levent</title>
+<meta name="description" content="Elektrikli scooter hata kodları ve arıza çözümleri. Xiaomi, Segway-Ninebot, Onvo, Ducati, Aprilia. Kontrol kartı, BMS ve batarya onarımı.">
+<style>
+  :root {
+    --bg: #f4f6f8; --kart: #ffffff; --yazi: #1b2430; --soluk: #5f6b7a;
+    --vurgu: #0a7cff; --cizgi: #dde3ea; --wp: #1fa855;
+    --evde: #e6f6ec; --evde-y: #146c34; --uzman: #e8f0ff; --uzman-y: #0b4fb3;
+    --acil: #fde8e8; --acil-y: #a11d1d; --taslak: #fff4e0; --taslak-y: #7a4b00;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1419; --kart: #182029; --yazi: #e6edf3; --soluk: #9aa7b4;
+      --vurgu: #4c9dff; --cizgi: #2b3642;
+      --evde: #12301f; --evde-y: #7fdc9f; --uzman: #14284a; --uzman-y: #9cc2ff;
+      --acil: #3d1616; --acil-y: #ffaaaa; --taslak: #3a2c12; --taslak-y: #f3c98b;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--yazi);
+    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  .sayfa { max-width: 720px; margin: 0 auto; padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+  h1 { margin: 0; font-size: 1.35rem; }
+  h2 { margin: 0 0 10px; font-size: 1.05rem; }
+  .alt { margin: 4px 0 0; color: var(--soluk); font-size: .95rem; }
+  .kutu { background: var(--kart); border: 1px solid var(--cizgi); border-radius: 14px; padding: 16px; }
+  .izgara { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
+  .liste { display: flex; flex-direction: column; gap: 8px; }
+  button.secim { font: inherit; text-align: left; padding: 12px 14px; border-radius: 12px; cursor: pointer;
+    border: 1px solid var(--cizgi); background: var(--bg); color: var(--yazi); }
+  button.secim:hover { border-color: var(--vurgu); }
+  button.secim b { color: var(--vurgu); margin-right: 6px; }
+  .geri { font: inherit; border: 0; background: none; color: var(--vurgu); cursor: pointer; padding: 0; margin-bottom: 10px; }
+  .ara { width: 100%; font: inherit; padding: 10px 12px; border-radius: 12px; margin-bottom: 10px;
+    border: 1px solid var(--cizgi); background: var(--bg); color: var(--yazi); }
+  .bos { color: var(--soluk); font-size: .92rem; }
+  .etiket { display: inline-block; font-size: .8rem; font-weight: 600; padding: 3px 10px; border-radius: 999px; margin: 0 6px 8px 0; }
+  .evde { background: var(--evde); color: var(--evde-y); }
+  .uzman { background: var(--uzman); color: var(--uzman-y); }
+  .acil { background: var(--acil); color: var(--acil-y); }
+  .taslak { background: var(--taslak); color: var(--taslak-y); }
+  .sonuc h3 { margin: 4px 0 8px; font-size: 1.1rem; }
+  .sonuc ol { margin: 6px 0 0; padding-left: 20px; }
+  .wp { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 13px; margin-top: 14px;
+    border-radius: 12px; background: var(--wp); color: #fff; font-weight: 600; text-decoration: none; text-align: center; }
+  .uyari { background: var(--acil); color: var(--acil-y); border-radius: 10px; padding: 10px 12px; font-size: .88rem; }
+  footer { color: var(--soluk); font-size: .8rem; text-align: center; }
+  footer a { color: inherit; }
+  .kaynak { color: var(--soluk); font-size: .8rem; margin-top: 10px; }
+  .model-adi { display: block; color: var(--soluk); font-size: .8rem; }
+</style>
+</head>
+<body>
+<div class="sayfa">
+  <header>
+    <h1>🛴 Scooter Arıza Rehberi</h1>
+    <p class="alt">Markanızı seçin, hata kodunu veya belirtiyi bulun, ne yapmanız gerektiğini öğrenin. Kontrol kartı, BMS ve batarya uzmanıyız.</p>
+  </header>
+
+  <div class="uyari">⚠️ Batarya şişmiş, duman veya yanık kokusu varsa scooter'ı şarja takmayın ve kullanmayın. Hemen bize ulaşın.</div>
+
+  <main class="kutu" id="ekran"></main>
+
+  <a class="wp" id="wpGenel" target="_blank" rel="noopener">💬 WhatsApp'tan Uzmana Yaz · 0535 647 11 11</a>
+
+  <footer><a href="/">E-Scooter Tamir Merkezi</a> · Metrocity AVM, Levent, Şişli / İstanbul<br>
+  Kart ve batarya onarımı · Türkiye geneli kargo ile kabul<br>
+  Bu rehber ön bilgilendirmedir; kesin teşhis uzman incelemesiyle yapılır.</footer>
+</div>
+
+<script src="veriler.js"></script>
+<script>
+  const WP_NO = "905356471111";
+  const ekran = document.getElementById("ekran");
+  const SEVIYE = {
+    evde: ["evde", "✅ Evde çözülebilir"],
+    uzman: ["uzman", "🔧 Uzman onarımı gerekir"],
+    acil: ["acil", "🚨 Acil: kullanımı bırakın"],
+  };
+  let marka = null;
+  let model = null; // null = kullanıcı modelini bilmiyor
+
+  wpAyarla(document.getElementById("wpGenel"), "Merhaba, scooter'ım için bilgi almak istiyorum.");
+  markaEkrani();
+
+  function markaEkrani() {
+    ekran.innerHTML = "<h2>1. Scooter'ınızın markası</h2><div class='izgara'></div>";
+    for (const m of Object.keys(MODELLER)) buton(ekran.lastChild, m, () => modelEkrani(m));
+  }
+
+  function modelEkrani(m) {
+    marka = m;
+    ekran.innerHTML = "";
+    geri(markaEkrani);
+    baslik("2. " + m + " · Modeliniz hangisi?");
+    const l = liste();
+    for (const ad of Object.keys(MODELLER[m])) buton(l, ad, () => turEkrani(ad));
+    buton(l, "❓ Modelimi bilmiyorum", () => turEkrani(null));
+  }
+
+  function turEkrani(md) {
+    model = md;
+    ekran.innerHTML = "";
+    geri(() => modelEkrani(marka));
+    baslik("3. " + marka + (model ? " " + model : "") + " · Ekranda hata kodu var mı?");
+    const l = liste();
+    buton(l, "🔢 Evet, ekranda hata kodu var", kodEkrani);
+    buton(l, "🔍 Hayır, bir belirti seçeceğim", belirtiEkrani);
+  }
+
+  // Seçilen modelin (veya model bilinmiyorsa markanın tüm modellerinin) kodları
+  function kodlariGetir() {
+    const modeller = model ? [model] : Object.keys(MODELLER[marka]);
+    const sonuc = [];
+    for (const ad of modeller) {
+      const md = MODELLER[marka][ad];
+      for (const [kod, tur, anlam] of md.kodlar) {
+        sonuc.push({ kod, anlam, model: ad, kaynak: md.kaynak, onay: TUMU_ONAYLI || ONAYLI.includes(marka + "|" + ad), ...TURLER[tur] });
+      }
+    }
+    return sonuc;
+  }
+
+  // "E21", "21E", "21" ve "e 21" aynı kabul edilir; sadece rakamlar karşılaştırılır
+  const rakam = (s) => s.replace(/\D/g, "").replace(/^0+(?=\d)/, "");
+
+  function kodEkrani() {
+    ekran.innerHTML = "";
+    geri(() => turEkrani(model));
+    baslik("4. Ekrandaki kodu yazın");
+    if (!model) bilgi("Modelinizi bilmediğiniz için tüm " + marka + " modellerindeki eşleşmeleri gösteriyoruz. Ekrandaki kod modele göre farklı anlam taşıyabilir.");
+    const ara = document.createElement("input");
+    ara.className = "ara";
+    ara.placeholder = "Kodu yazın (örn: 21 veya E21)";
+    ara.inputMode = "search";
+    ekran.appendChild(ara);
+    const l = liste();
+    const kodlar = kodlariGetir();
+    const ciz = () => {
+      const q = rakam(ara.value);
+      l.innerHTML = "";
+      const bulunan = kodlar.filter((k) => !ara.value.trim() || (q && rakam(k.kod) === q));
+      for (const k of bulunan) {
+        const ust = model ? "" : "<span class='model-adi'>" + k.model + "</span>";
+        buton(l, ust + "<b>" + k.kod + "</b>" + k.anlam, () => sonucEkrani(k, kodEkrani), true);
+      }
+      if (!bulunan.length) bilgi("Bu kod listemizde yok. WhatsApp'tan yazın, hemen bakalım.", l);
+    };
+    ara.addEventListener("input", ciz);
+    ciz();
+    ara.focus();
+  }
+
+  function belirtiEkrani() {
+    ekran.innerHTML = "";
+    geri(() => turEkrani(model));
+    baslik("4. Sorununuz hangisi?");
+    const l = liste();
+    for (const b of BELIRTILER) buton(l, b.baslik, () => sonucEkrani({ ...b, anlam: b.baslik, onay: true }, belirtiEkrani));
+  }
+
+  function sonucEkrani(k, onceki) {
+    ekran.innerHTML = "";
+    geri(onceki);
+    const [sinif, yazi] = SEVIYE[k.seviye];
+    const modelAdi = k.model || model;
+    const d = document.createElement("div");
+    d.className = "sonuc";
+    d.innerHTML =
+      "<span class='etiket " + sinif + "'>" + yazi + "</span>" +
+      (k.onay ? "" : "<span class='etiket taslak'>Bilgi doğrulanıyor</span>") +
+      "<h3>" + (k.kod ? k.kod + " · " : "") + k.anlam + "</h3>" +
+      "<p><b>Olası neden:</b> " + k.neden + "</p>" +
+      "<p><b>Sizin yapabilecekleriniz:</b></p><ol>" + k.evde.map((s) => "<li>" + s + "</li>").join("") + "</ol>" +
+      (k.seviye !== "evde"
+        ? "<p>Bu arıza kart veya batarya seviyesinde onarım gerektiriyor. Dükkânımıza getirebilir veya kargoyla gönderebilirsiniz. <i>Batarya göndermeden önce lütfen WhatsApp'tan bilgi alın.</i></p>"
+        : "") +
+      (k.kaynak ? "<p class='kaynak'>" + marka + " " + modelAdi + " · Kaynak: " + k.kaynak + "</p>" : "");
+    ekran.appendChild(d);
+    ozelWp("Merhaba, arıza rehberinden geliyorum. " + marka + (modelAdi ? " " + modelAdi : "") + " · " +
+      (k.kod ? k.kod + " - " : "") + k.anlam + ". ");
+  }
+
+  // ---- yardımcılar ----
+  function buton(hedef, html, tikla, htmlMi) {
+    const b = document.createElement("button");
+    b.className = "secim";
+    if (htmlMi) b.innerHTML = html; else b.textContent = html;
+    b.onclick = () => { tikla(); window.scrollTo({ top: 0, behavior: "smooth" }); };
+    hedef.appendChild(b);
+  }
+  function geri(f) {
+    const b = document.createElement("button");
+    b.className = "geri";
+    b.textContent = "← Geri";
+    b.onclick = f;
+    ekran.appendChild(b);
+  }
+  function baslik(t) { const h = document.createElement("h2"); h.textContent = t; ekran.appendChild(h); }
+  function liste() { const l = document.createElement("div"); l.className = "liste"; ekran.appendChild(l); return l; }
+  function bilgi(t, hedef = ekran) { const p = document.createElement("p"); p.className = "bos"; p.textContent = t; hedef.appendChild(p); }
+  function ozelWp(metin) {
+    const a = document.createElement("a");
+    a.className = "wp"; a.target = "_blank"; a.rel = "noopener";
+    a.textContent = "💬 Bu arıza için WhatsApp'tan yaz";
+    wpAyarla(a, metin);
+    ekran.appendChild(a);
+  }
+  function wpAyarla(a, metin) { a.href = "https://wa.me/" + WP_NO + "?text=" + encodeURIComponent(metin); }
+</script>
+</body>
+</html>

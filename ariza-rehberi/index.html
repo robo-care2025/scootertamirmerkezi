@@ -72,15 +72,10 @@
   Bu rehber ön bilgilendirmedir; kesin teşhis uzman incelemesiyle yapılır.</footer>
 </div>
 
-<script src="veriler.js"></script>
+<script src="veriler.js?v=4"></script>
 <script>
   const WP_NO = "905356471111";
   const ekran = document.getElementById("ekran");
-  const SEVIYE = {
-    evde: ["evde", "✅ Evde çözülebilir"],
-    uzman: ["uzman", "🔧 Uzman onarımı gerekir"],
-    acil: ["acil", "🚨 Acil: kullanımı bırakın"],
-  };
   let marka = null;
   let model = null; // null = kullanıcı modelini bilmiyor
 
@@ -118,8 +113,8 @@
     const sonuc = [];
     for (const ad of modeller) {
       const md = MODELLER[marka][ad];
-      for (const [kod, tur, anlam] of md.kodlar) {
-        sonuc.push({ kod, anlam, model: ad, kaynak: md.kaynak, onay: TUMU_ONAYLI || ONAYLI.includes(marka + "|" + ad), ...TURLER[tur] });
+      for (const [kod, anlam, orijinal, cozum] of md.kodlar) {
+        sonuc.push({ kod, anlam, orijinal, cozum, model: ad, kaynak: md.kaynak });
       }
     }
     return sonuc;
@@ -166,29 +161,38 @@
     geri(() => turEkrani(model));
     baslik("4. Sorununuz hangisi?");
     const l = liste();
-    for (const b of BELIRTILER) buton(l, b.baslik, () => sonucEkrani({ ...b, anlam: b.baslik, onay: true }, belirtiEkrani));
+    for (const b of BELIRTILER) buton(l, b.baslik, () => belirtiSonucu(b));
   }
 
+  // Hata kodu sonucu: yalnızca kılavuzdaki bilgi gösterilir
   function sonucEkrani(k, onceki) {
     ekran.innerHTML = "";
     geri(onceki);
-    const [sinif, yazi] = SEVIYE[k.seviye];
-    const modelAdi = k.model || model;
     const d = document.createElement("div");
     d.className = "sonuc";
     d.innerHTML =
-      "<span class='etiket " + sinif + "'>" + yazi + "</span>" +
-      (k.onay ? "" : "<span class='etiket taslak'>Bilgi doğrulanıyor</span>") +
-      "<h3>" + (k.kod ? k.kod + " · " : "") + k.anlam + "</h3>" +
-      "<p><b>Olası neden:</b> " + k.neden + "</p>" +
-      "<p><b>Sizin yapabilecekleriniz:</b></p><ol>" + k.evde.map((s) => "<li>" + s + "</li>").join("") + "</ol>" +
-      (k.seviye !== "evde"
-        ? "<p>Bu arıza kart veya batarya seviyesinde onarım gerektiriyor. Dükkânımıza getirebilir veya kargoyla gönderebilirsiniz. <i>Batarya göndermeden önce lütfen WhatsApp'tan bilgi alın.</i></p>"
-        : "") +
-      (k.kaynak ? "<p class='kaynak'>" + marka + " " + modelAdi + " · Kaynak: " + k.kaynak + "</p>" : "");
+      "<h3>" + k.kod + " · " + k.anlam + "</h3>" +
+      (k.orijinal ? "<p class='kaynak'>Kılavuzdaki orijinal ifade: “" + k.orijinal + "”</p>" : "") +
+      (k.cozum ? "<p><b>Kılavuzda yazan çözüm:</b> " + k.cozum + "</p>" : "") +
+      "<p>Kart, BMS ve batarya arızalarını onarıyoruz. Dükkânımıza getirebilir veya kargoyla gönderebilirsiniz. <i>Batarya göndermeden önce lütfen WhatsApp'tan bilgi alın.</i></p>" +
+      "<p class='kaynak'>" + marka + " " + k.model + " · Kaynak: " + k.kaynak + "</p>";
     ekran.appendChild(d);
-    ozelWp("Merhaba, arıza rehberinden geliyorum. " + marka + (modelAdi ? " " + modelAdi : "") + " · " +
-      (k.kod ? k.kod + " - " : "") + k.anlam + ". ");
+    ozelWp("Merhaba, arıza rehberinden geliyorum. " + marka + " " + k.model + " · " + k.kod + " - " + k.anlam);
+  }
+
+  // Belirti sonucu: servisimizin genel güvenlik önerileri (kılavuz bilgisi değildir)
+  function belirtiSonucu(b) {
+    ekran.innerHTML = "";
+    geri(belirtiEkrani);
+    const d = document.createElement("div");
+    d.className = "sonuc";
+    d.innerHTML =
+      (b.acil ? "<span class='etiket acil'>🚨 Acil: kullanımı bırakın</span>" : "") +
+      "<h3>" + b.baslik + "</h3>" +
+      "<p><b>Servisimizin önerileri:</b></p><ol>" + b.oneriler.map((s) => "<li>" + s + "</li>").join("") + "</ol>" +
+      "<p class='kaynak'>Bu öneriler genel güvenlik bilgisidir; kesin teşhis uzman incelemesiyle yapılır.</p>";
+    ekran.appendChild(d);
+    ozelWp("Merhaba, arıza rehberinden geliyorum. " + marka + (model ? " " + model : "") + " · " + b.baslik);
   }
 
   // ---- yardımcılar ----

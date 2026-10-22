@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>E-Scooter Tamir Merkezi Levent | Elektrikli Scooter Tamiri</title>
+<meta name="description" content="Levent Metrocity AVM'de elektrikli scooter batarya, anakart ve motor tamiri. Tüm markalar. Tel: 0535 647 11 11">
+<meta property="og:title" content="E-Scooter Tamir Merkezi · Levent">
+<meta property="og:description" content="Elektrikli scooter batarya, anakart ve motor tamiri. Metrocity AVM, Levent.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='white' stroke='%231fa64a' stroke-width='6'/%3E%3C/svg%3E">
+<style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=Nunito+Sans:wght@400;600;700&display=swap">
+<style>
+/* Layout: ferah, yuvarlak; kahramanda hücre hücre dolan batarya kartı, süreç metro hattı gibi duraklar */
+:root{
+  --bg:#f6f8f5; --card:#ffffff; --ink:#0f2a43; --muted:#5a6b78; --line:#dde4e0;
+  --m2:#1fa64a; --m2-soft:#e3f4e8; --stop:#ffffff; --hot:#ff5a4e;
+  --display:"Sora",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --body:"Nunito Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1724;--card:#12212f;--ink:#e8f0f5;--muted:#93a6b4;--line:#22384a;--m2:#36c565;--m2-soft:#123323;--stop:#0b1724;--hot:#ff7469;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0b1724;--card:#12212f;--ink:#e8f0f5;--muted:#93a6b4;--line:#22384a;--m2:#36c565;--m2-soft:#123323;--stop:#0b1724;--hot:#ff7469;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 var(--body)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--m2);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.08;text-wrap:balance;letter-spacing:-.02em}
+h2{font-size:clamp(1.9rem,4.5vw,2.8rem)}
+.pill{display:inline-flex;align-items:center;gap:.5rem;font:700 .82rem var(--display);padding:.35rem .8rem;border-radius:99px;background:var(--m2-soft);color:var(--m2)}
+.pill .m{background:var(--m2);color:#fff;border-radius:6px;padding:.05rem .4rem;font-size:.75rem}
+
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.8rem}
+.logo{display:flex;align-items:center;gap:.6rem;font:800 1.1rem var(--display);text-decoration:none}
+.logo i{width:30px;height:30px;border-radius:50%;border:6px solid var(--m2);background:var(--stop)}
+.nav a.call{font-weight:700;text-decoration:none;color:var(--m2);white-space:nowrap}
+
+.hero{padding-block:3.5rem 2rem}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.hero h1{font-size:clamp(2.6rem,6.5vw,4.4rem);font-weight:800;margin:1rem 0}
+.hero h1 span{color:var(--m2)}
+.hero p{font-size:1.15rem;color:var(--muted);max-width:30em;margin:0 0 1.6rem}
+.btns{display:flex;flex-wrap:wrap;gap:.8rem}
+.btn{display:inline-flex;align-items:center;gap:.55rem;padding:.9rem 1.4rem;border-radius:99px;font-weight:700;text-decoration:none;font-size:1rem}
+.btn-main{background:var(--m2);color:#fff}
+.btn-alt{border:2px solid var(--line);background:var(--card)}
+.btn svg{width:20px;height:20px}
+.score{margin-top:1.5rem;color:var(--muted);font-size:.95rem}.score b{color:var(--ink)}
+
+/* batarya kartı */
+.bat-card{background:var(--card);border:1px solid var(--line);border-radius:32px;padding:2rem 1.5rem 1.6rem;display:grid;justify-items:center;gap:1.1rem;min-width:0}
+.battery{width:min(200px,60%);display:grid;justify-items:center}
+.bat-cap{width:38%;height:18px;background:var(--ink);border-radius:10px 10px 0 0}
+.bat-body{width:100%;aspect-ratio:1/1.5;border:7px solid var(--ink);border-radius:30px;padding:10px;display:flex;flex-direction:column-reverse;gap:7px;position:relative}
+.cell{flex:1;border-radius:14px;background:var(--m2)}
+.bat-bolt{position:absolute;inset:0;display:grid;place-items:center;color:#fff;pointer-events:none}
+.bat-bolt svg{width:44%;filter:drop-shadow(0 2px 6px rgba(0,0,0,.25))}
+.bat-meta{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center}
+.bat-meta span{font:700 .85rem var(--display);padding:.4rem .85rem;border-radius:99px;background:var(--m2-soft);color:var(--m2);font-variant-numeric:tabular-nums}
+.bat-meta span.v{background:var(--ink);color:var(--bg)}
+.bat-card p{margin:0;color:var(--muted);font-size:.92rem;text-align:center}
+@media (prefers-reduced-motion:no-preference){
+  .cell{animation:charge 4.5s infinite}
+  .cell:nth-child(2){animation-delay:.45s}.cell:nth-child(3){animation-delay:.9s}.cell:nth-child(4){animation-delay:1.35s}.cell:nth-child(5){animation-delay:1.8s}
+  @keyframes charge{0%{opacity:.15;transform:scale(.96)}10%,82%{opacity:1;transform:none}100%{opacity:.15}}
+}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr}}
+
+section{padding-block:4rem}
+.head{display:grid;gap:.8rem;margin-bottom:2rem;max-width:38em}
+.head p{margin:0;color:var(--muted)}
+
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.svc{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:1.6rem;display:flex;flex-direction:column;gap:.7rem;min-width:0}
+.svc .ic{width:52px;height:52px;border-radius:16px;background:var(--m2-soft);color:var(--m2);display:grid;place-items:center}
+.svc h3{font-size:1.4rem}
+.svc p{margin:0;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:auto;padding-top:.6rem}
+.chips span{font-size:.82rem;font-weight:600;padding:.25rem .65rem;border-radius:99px;border:1px solid var(--line)}
+@media (max-width:860px){.svc-grid{grid-template-columns:1fr}}
+
+/* süreç kartları */
+.flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+.flow li{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:1.5rem;display:flex;flex-direction:column;gap:.55rem;min-width:0}
+.fi{width:52px;height:52px;border-radius:16px;background:var(--m2);color:#fff;display:grid;place-items:center;margin-bottom:.3rem}
+.fi svg{width:26px;height:26px}
+.fs{font:700 .78rem var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--m2)}
+.flow h3{font-size:1.25rem}
+.flow p{margin:0;color:var(--muted);font-size:.95rem}
+@media (max-width:900px){.flow{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.flow{grid-template-columns:1fr}}
+/* (eski hat stili) */
+.line-wrap{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:2rem 1.5rem}
+.line{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);position:relative}
+.line::before{content:"";position:absolute;left:10%;right:10%;top:15px;height:8px;border-radius:8px;background:var(--m2)}
+.line li{position:relative;text-align:center;padding:0 .4rem;min-width:0}
+.dot{width:38px;height:38px;border-radius:50%;background:var(--stop);border:7px solid var(--m2);margin:0 auto .9rem;position:relative}
+.line li.here .dot{border-color:var(--hot);transform:scale(1.15)}
+.line h3{font-size:1.05rem}
+.line p{margin:.3rem 0 0;font-size:.9rem;color:var(--muted)}
+@media (max-width:760px){
+  .line{grid-template-columns:1fr;gap:1.4rem}
+  .line::before{left:15px;right:auto;top:10px;bottom:10px;width:8px;height:auto}
+  .line li{text-align:left;display:grid;grid-template-columns:38px 1fr;gap:1rem;padding:0}
+  .dot{margin:0}
+}
+
+.sym-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.9rem}
+.sym{display:flex;gap:.9rem;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:1rem 1.1rem}
+.sym .b{flex:none;width:40px;height:40px;border-radius:12px;background:var(--hot);color:#fff;display:grid;place-items:center;font:800 .78rem var(--display)}
+.sym b{display:block}.sym span{color:var(--muted);font-size:.92rem}
+
+.brands{display:flex;flex-wrap:wrap;gap:.6rem}
+.brands span{background:var(--card);border:1px solid var(--line);border-radius:99px;padding:.55rem 1.1rem;font:700 1rem var(--display)}
+.brands span:last-child{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.rev{margin:0;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:1.5rem;display:flex;flex-direction:column;gap:.9rem}
+.rev .st{color:#f5b301;letter-spacing:2px}
+.rev blockquote{margin:0}
+.rev figcaption{margin-top:auto;font-weight:700}
+@media (max-width:860px){.reviews{grid-template-columns:1fr}}
+
+.contact{background:var(--m2);color:#fff;border-radius:36px;margin-inline:max(16px,env(safe-area-inset-left,0px));padding-block:3rem}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+.contact h2{color:#fff}
+.contact dl{display:grid;gap:1rem;margin:1.5rem 0 0}
+.contact dt{font:700 .78rem var(--display);letter-spacing:.1em;text-transform:uppercase;opacity:.8}
+.contact dd{margin:0;font-size:1.05rem}
+.tel{font:800 2.3rem/1 var(--display)}
+form{background:var(--card);color:var(--ink);border-radius:24px;padding:1.6rem;display:grid;gap:1rem;min-width:0}
+form h3{font-size:1.5rem}
+label{display:grid;gap:.3rem;font-weight:700;font-size:.92rem}
+input,select,textarea{font:inherit;font-weight:400;padding:.75rem .9rem;border:1px solid var(--line);border-radius:14px;background:var(--bg);color:var(--ink);width:100%}
+textarea{min-height:80px}
+@media (max-width:860px){.contact-grid{grid-template-columns:1fr}}
+footer{padding-block:2rem;color:var(--muted);font-size:.88rem;text-align:center}
+.wa-float{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:20;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.wa-float svg{width:30px;height:30px}
+</style>
+</head>
+<body>
+
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3Z"/></symbol></svg>
+
+<header><div class="wrap nav"><a class="logo" href="#top"><i></i>E-Scooter Tamir · Levent</a><a class="call" href="tel:+905356471111">0535 647 11 11</a></div></header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="pill"><span class="m">M2</span> Levent durağı · Metrocity AVM</span>
+        <h1>Bataryanız bitmedi, <span>yeniden doluyor.</span></h1>
+        <p>Elektrikli scooter'ınızın bataryasını, anakartını ve motorunu onarıyoruz. Önce ölçüyoruz, sonra fiyat veriyoruz.</p>
+        <div class="btns">
+          <a class="btn btn-main" href="https://wa.me/905356471111" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>WhatsApp'tan yazın</a>
+          <a class="btn btn-alt" href="#iletisim">Yol tarifi</a>
+        </div>
+        <div class="score"><span style="color:#f5b301">★★★★★</span> <b>5,0</b> Google puanı</div>
+      </div>
+      <div class="bat-card" aria-label="Şarj olan batarya animasyonu">
+        <div class="battery" aria-hidden="true">
+          <div class="bat-cap"></div>
+          <div class="bat-body"><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+            <div class="bat-bolt"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg></div></div>
+        </div>
+        <div class="bat-meta"><span class="v" id="volt">36.0 V</span><span id="pct">%0</span><span>BMS ✓</span></div>
+        <p>Şarj tutmayan bataryanız tekrar tam kapasite.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="head"><span class="pill">Hizmetler</span><h2>Scooter'ın kalbi, beyni ve kasları</h2><p>Batarya, kontrol kartı ve motoru parça seviyesinde onarıyoruz. Tamiri mümkün olanı değiştirmiyoruz.</p></div>
+      <div class="svc-grid">
+        <article class="svc"><div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="12" height="18" rx="2"/><path d="M10 2h4M12 9l-2 4h4l-2 4"/></svg></div><h3>Batarya</h3><p>Şarj tutmayan, menzili düşen ya da açılmayan bataryalar.</p><div class="chips"><span>Hücre değişimi</span><span>BMS</span><span>36–60V</span></div></article>
+        <article class="svc"><div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 1v4M15 1v4M9 19v4M15 19v4M1 9h4M1 15h4M19 9h4M19 15h4"/></svg></div><h3>Anakart</h3><p>Controller ve ekran kartında komponent seviyesinde tamir.</p><div class="chips"><span>MOSFET</span><span>Hata kodları</span><span>Su hasarı</span></div></article>
+        <article class="svc"><div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></div><h3>Motor ve bakım</h3><p>Ses yapan, çekmeyen motorlar; fren, lastik ve bakım.</p><div class="chips"><span>Hall sensörü</span><span>Rulman</span><span>Fren</span></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><span class="pill">Nasıl çalışıyoruz</span><h2>Tamir hattı, beş durak</h2></div>
+      <div class="line-wrap">
+        <ol class="line">
+          <li><div class="dot"></div><div><h3>Yazın</h3><p>Model ve belirti WhatsApp'tan</p></div></li>
+          <li><div class="dot"></div><div><h3>Getirin</h3><p>Metrocity AVM, Levent</p></div></li>
+          <li class="here"><div class="dot"></div><div><h3>Ölçüm</h3><p>Cihazla teşhis, net fiyat</p></div></li>
+          <li><div class="dot"></div><div><h3>Onay ve tamir</h3><p>Onayınız olmadan başlamayız</p></div></li>
+          <li><div class="dot"></div><div><h3>Yola çıkış</h3><p>Test sürüşüyle teslim</p></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><span class="pill">Sık arızalar</span><h2>Hangisi sizinki?</h2></div>
+      <div class="sym-grid">
+        <div class="sym"><span class="b">PWR</span><div><b>Hiç açılmıyor</b><span>Batarya, BMS ya da kart</span></div></div>
+        <div class="sym"><span class="b">CHG</span><div><b>Şarj olmuyor</b><span>Adaptör, soket, hücre</span></div></div>
+        <div class="sym"><span class="b">KM</span><div><b>Menzil düştü</b><span>Hücre dengesizliği</span></div></div>
+        <div class="sym"><span class="b">E##</span><div><b>Hata kodu</b><span>Kodu yazın, söyleyelim</span></div></div>
+        <div class="sym"><span class="b">MTR</span><div><b>Motor sesi</b><span>Rulman, sensör, faz</span></div></div>
+        <div class="sym"><span class="b">H₂O</span><div><b>Yağmurda kaldı</b><span>Bekletmeden getirin</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><span class="pill">Markalar</span><h2>Her marka, her model</h2></div>
+      <div class="brands"><span>Xiaomi</span><span>Segway-Ninebot</span><span>Aprilia</span><span>Ducati</span><span>Lamborghini</span><span>Onvo</span><span>Kugoo</span><span>+ Diğer tüm markalar</span></div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><span class="pill">Google ★ 5,0</span><h2>Müşterilerimiz ne diyor?</h2></div>
+      <div class="reviews">
+        <figure class="rev"><span class="st">★★★★★</span><blockquote>“Kaliteli işçilik + uygun fiyat, tebrikler.”</blockquote><figcaption>Enes Kurt</figcaption></figure>
+        <figure class="rev"><span class="st">★★★★★</span><blockquote>“Pişman olunmayacak bir hizmet. Kaliteli, güvenli ve hızlı.”</blockquote><figcaption>Cezmi Düştü</figcaption></figure>
+        <figure class="rev"><span class="st">★★★★★</span><blockquote>“Temiz ve kaliteli işçilik, uygun fiyat. Her konuda yardımcı oluyor.”</blockquote><figcaption>Emrah Kemal</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="iletisim" class="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <h2>Levent durağında inin, bize uğrayın.</h2>
+        <dl>
+          <div><dt>Telefon</dt><dd class="tel">0535 647 11 11</dd></div>
+          <div><dt>Adres</dt><dd>Metrocity AVM, Büyükdere Cad. No:171<br>Levent, Şişli / İstanbul · <a href="https://www.google.com/maps/search/?api=1&query=E-Scooter+Tamir+Merkezi+Levent+Metrocity" target="_blank" rel="noopener">Haritada aç →</a></dd></div>
+          <div><dt>Saatler</dt><dd>Pzt–Cum 09:00–18:00 · Cmt–Paz kapalı</dd></div>
+          <div><dt>E-posta</dt><dd>robotiktamirmerkezi@outlook.com</dd></div>
+        </dl>
+      </div>
+      <form id="f" novalidate>
+        <h3>Hızlı fiyat alın</h3>
+        <label for="fModel">Scooter modeli<input id="fModel" placeholder="Örn. Xiaomi Pro 2" autocomplete="off"></label>
+        <label for="fIssue">Arıza<select id="fIssue"><option>Hiç açılmıyor</option><option>Şarj olmuyor</option><option>Menzil düştü</option><option>Hata kodu</option><option>Motor sesi / çekmiyor</option><option>Su hasarı</option><option>Bakım / fren / lastik</option><option>Diğer</option></select></label>
+        <label for="fNote">Not<textarea id="fNote" placeholder="Hata kodu, ne zaman başladı..."></textarea></label>
+        <a class="btn btn-main" id="waSend" href="https://wa.me/905356471111" target="_blank" rel="noopener" style="justify-content:center"><svg><use href="#wa"/></svg>WhatsApp'ta gönder</a>
+      </form>
+    </div>
+  </section>
+</main>
+<footer>© 2026 E-Scooter Tamir Merkezi · Levent</footer>
+<a class="wa-float" href="https://wa.me/905356471111" target="_blank" rel="noopener" aria-label="WhatsApp'tan yazın"><svg><use href="#wa"/></svg></a>
+<script>
+(function(){var m=document.getElementById('fModel'),i=document.getElementById('fIssue'),n=document.getElementById('fNote'),a=document.getElementById('waSend');
+function b(){a.href='https://wa.me/905356471111?text='+encodeURIComponent('Merhaba, scooter tamiri için yazıyorum.\nModel: '+(m.value.trim()||'-')+'\nArıza: '+i.value+(n.value.trim()?'\nNot: '+n.value.trim():''))}
+[m,i,n].forEach(function(e){e.addEventListener('input',b);e.addEventListener('change',b)});b();
+document.getElementById('f').addEventListener('submit',function(e){e.preventDefault()});})();
+(function(){var v=document.getElementById('volt'),p=document.getElementById('pct');if(!v)return;
+if(matchMedia('(prefers-reduced-motion: reduce)').matches){v.textContent='42.0 V';p.textContent='%100';return}
+var t0=performance.now();function f(t){var x=((t-t0)%4500)/4500,k=Math.min(1,Math.max(0,(x-.02)/.4));if(x>.82)k=Math.max(0,1-(x-.82)/.18);
+v.textContent=(36+6*k).toFixed(1)+' V';p.textContent='%'+Math.round(k*100);requestAnimationFrame(f)}requestAnimationFrame(f)})();
+</script>
+
+</body>
+</html>

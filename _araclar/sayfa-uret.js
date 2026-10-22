@@ -295,11 +295,9 @@ ${ILETISIM}
 
 // Site haritası
 const bugun = new Date().toISOString().slice(0, 10);
-// Aynı içerik iki isimle yazılır: sitemap.xml (standart) ve site-haritasi.xml
-// (Search Console'da sitenin eski Wix dönemindeki sitemap.xml kaydına takılmamak için)
 const haritaXml =
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
   urller.map((u) => `  <url><loc>${SITE}${u}</loc><lastmod>${bugun}</lastmod></url>`).join("\n") + `\n</urlset>\n`;
-for (const ad of ["sitemap.xml", "site-haritasi.xml"]) fs.writeFileSync(path.join(KOK, ad), haritaXml);
+fs.writeFileSync(path.join(KOK, "sitemap.xml"), haritaXml);
 
 console.log(`${urller.length} adres üretildi (sitemap.xml güncellendi).`);

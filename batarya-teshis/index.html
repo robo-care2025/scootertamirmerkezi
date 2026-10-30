@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scooter Batarya Ön Teşhis: Neden Açılmıyor, Şarj Olmuyor? | E-Scooter Tamir Merkezi Levent</title>
+<link rel="canonical" href="https://www.scootertamirmerkezi.com/batarya-teshis/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.scootertamirmerkezi.com/batarya-teshis/">
+<meta property="og:title" content="Scooter Batarya Ön Teşhis | E-Scooter Tamir Merkezi Levent">
+<meta name="description" content="Scooter bataryanız açılmıyor, şarj olmuyor veya çabuk mu bitiyor? Birkaç soruyla olası sebebi öğrenin. Levent'te BMS ve hücre onarımı.">
+<style>
+  :root {
+    --bg: #f4f6f8; --kart: #ffffff; --yazi: #1b2430; --soluk: #5f6b7a;
+    --vurgu: #0a7cff; --cizgi: #dde3ea; --wp: #1fa855;
+    --uzman: #e8f0ff; --uzman-y: #0b4fb3; --acil: #fde8e8; --acil-y: #a11d1d;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1419; --kart: #182029; --yazi: #e6edf3; --soluk: #9aa7b4;
+      --vurgu: #4c9dff; --cizgi: #2b3642;
+      --uzman: #14284a; --uzman-y: #9cc2ff; --acil: #3d1616; --acil-y: #ffaaaa;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--yazi);
+    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  .sayfa { max-width: 720px; margin: 0 auto; padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+  h1 { margin: 0; font-size: 1.35rem; }
+  h2 { margin: 0 0 10px; font-size: 1.05rem; }
+  .alt { margin: 4px 0 0; color: var(--soluk); font-size: .95rem; }
+  .kutu { background: var(--kart); border: 1px solid var(--cizgi); border-radius: 14px; padding: 16px; }
+  .liste { display: flex; flex-direction: column; gap: 8px; }
+  button.secim { font: inherit; text-align: left; padding: 12px 14px; border-radius: 12px; cursor: pointer;
+    border: 1px solid var(--cizgi); background: var(--bg); color: var(--yazi); }
+  button.secim:hover { border-color: var(--vurgu); }
+  .geri { font: inherit; border: 0; background: none; color: var(--vurgu); cursor: pointer; padding: 0; margin-bottom: 10px; }
+  .ara { width: 100%; font: inherit; padding: 10px 12px; border-radius: 12px; margin-top: 14px;
+    border: 1px solid var(--cizgi); background: var(--bg); color: var(--yazi); }
+  .bos { color: var(--soluk); font-size: .92rem; margin: 0 0 6px; }
+  .etiket { display: inline-block; font-size: .8rem; font-weight: 600; padding: 3px 10px; border-radius: 999px; margin: 0 6px 8px 0; }
+  .uzman { background: var(--uzman); color: var(--uzman-y); }
+  .acil { background: var(--acil); color: var(--acil-y); }
+  .sonuc h3 { margin: 4px 0 8px; font-size: 1.1rem; }
+  .sonuc ol { margin: 6px 0 0; padding-left: 20px; }
+  .sonuc li { margin: 6px 0; }
+  .wp { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 13px; margin-top: 14px;
+    border-radius: 12px; background: var(--wp); color: #fff; font-weight: 600; text-decoration: none; text-align: center; }
+  .uyari { background: var(--acil); color: var(--acil-y); border-radius: 10px; padding: 10px 12px; font-size: .88rem; }
+  .sss h3 { margin: 14px 0 4px; font-size: 1rem; }
+  .sss p { margin: 0; color: var(--soluk); }
+  footer { color: var(--soluk); font-size: .8rem; text-align: center; }
+  footer a { color: inherit; }
+  .kaynak { color: var(--soluk); font-size: .8rem; margin-top: 10px; }
+</style>
+</head>
+<body>
+<div class="sayfa">
+  <header>
+    <h1>🔋 Scooter Batarya Ön Teşhis</h1>
+    <p class="alt">Birkaç soruyu cevaplayın, bataryanızdaki sorunun olası sebebini öğrenin. Batarya, BMS ve hücre onarımı uzmanıyız.</p>
+  </header>
+
+  <div class="uyari">⚠️ Batarya şişmiş, duman veya yanık kokusu varsa scooter'ı şarja takmayın ve kullanmayın. Hemen bize ulaşın.</div>
+
+  <main class="kutu" id="ekran"></main>
+
+  <section class="kutu sss">
+    <h2>Sık sorulanlar</h2>
+    <h3>Scooter bataryası neden hiç açılmaz?</h3>
+    <p>En sık sebep, uzun süre şarjsız bekleyen bataryada bir hücre grubunun voltajının düşmesidir. Batarya yönetim kartı (BMS) bu grubu korumak için çıkışı keser. BMS arızası, batarya içinde kopmuş bir bağlantı veya şarj aleti arızası da aynı belirtiyi verir.</p>
+    <h3>Bataryanın tamamını değiştirmek gerekir mi?</h3>
+    <p>Çoğu zaman hayır. Ölçümle zayıf hücre grubu veya arızalı BMS bulunur; yalnızca o parça onarılır ya da değiştirilir.</p>
+    <h3>Scooter'ı uzun süre kullanmayacaksam ne yapmalıyım?</h3>
+    <p>Bataryayı tamamen boş bırakmayın; yarı dolu (yaklaşık %50–70) bırakıp ayda bir şarj edin. Boş bırakılan batarya zamanla daha da boşalır ve açılmaz hâle gelebilir.</p>
+    <h3>Batarya şişerse ne yapmalıyım?</h3>
+    <p>Scooter'ı kullanmayın ve şarja takmayın, yanıcı maddelerden uzak tutun ve bize ulaşın. Şişmiş bataryayı kargoya vermeyin.</p>
+  </section>
+
+  <a class="wp" id="wpGenel" target="_blank" rel="noopener">💬 WhatsApp'tan Uzmana Yaz · 0535 647 11 11</a>
+
+  <footer><a href="/">E-Scooter Tamir Merkezi</a> · Metrocity AVM, Levent, Şişli / İstanbul<br>
+  Kart ve batarya onarımı · Türkiye geneli kargo ile kabul<br>
+  Bu sayfa ön bilgilendirmedir; kesin teşhis ölçümle yapılır.<br>
+  <a href="/scooter-batarya-tamiri/">Batarya tamiri</a> · <a href="/ariza-rehberi/">Arıza rehberi</a></footer>
+</div>
+
+<script>
+  const WP_NO = "905356471111";
+
+  // Olası sebepler. Servisimizin genel tecrübesine dayanır; kesin teşhis ölçümle yapılır.
+  const SEBEPLER = {
+    grupDusuk: { baslik: "Bir hücre grubunun voltajı düşmüş, BMS bataryayı korumaya almış olabilir",
+      aciklama: "Batarya, seri bağlı hücre gruplarından oluşur. Uzun süre şarjsız beklemede gruplardan biri diğerlerinden fazla boşalabilir. BMS (batarya yönetim kartı) bu grubu korumak için çıkışı keser ve scooter hiç açılmaz. Çoğu zaman bataryanın tamamı değil, sadece zayıf grup değiştirilerek onarılır." },
+    bms: { baslik: "BMS (batarya yönetim kartı) arızalı olabilir",
+      aciklama: "Hücreler sağlam olsa bile BMS kartı çıkışı veya şarjı açmıyorsa scooter çalışmaz ya da şarj olmaz. BMS kart üzerinde onarılabilir veya uyumlu bir kartla değiştirilebilir." },
+    baglanti: { baslik: "Batarya içinde bir bağlantı kopmuş olabilir",
+      aciklama: "Darbe ve titreşim; hücreleri birbirine bağlayan nikel şeritleri, balans tellerini veya batarya soketini koparabilir. BMS bir grubu yanlış ölçünce bataryayı kapatır." },
+    sarjAleti: { baslik: "Şarj aleti veya şarj soketi arızalı olabilir",
+      aciklama: "Şarj aletinin ışığı hiç yanmıyorsa ya da soket yanık veya gevşekse batarya şarj olmaz. Şarj aleti ve soket kolayca test edilir." },
+    dengesizlik: { baslik: "Hücre grupları arasında dengesizlik olabilir",
+      aciklama: "Gruplardan biri diğerlerinden önce doluyor veya boşalıyorsa BMS şarjı erken keser ya da batarya göstergesi henüz doluyken scooter kapanır. Zayıf grup bulunup değiştirilebilir." },
+    zayifGrup: { baslik: "Zayıf bir hücre grubu yük altında çöküyor olabilir",
+      aciklama: "Kalkışta ve yokuşta motor yüksek akım çeker. Zayıf bir grubun voltajı bu anda aniden düşer ve BMS korumaya girerek scooter'ı kapatır. Batarya göstergesinin ani düşmesi de bu yüzdendir." },
+    akimKoruma: { baslik: "BMS'nin aşırı akım koruması devreye giriyor olabilir",
+      aciklama: "Bataryanın verebileceğinden fazla akım çekildiğinde BMS çıkışı keser. Zayıf hücreler veya kontrol kartındaki bir arıza buna yol açabilir." },
+    yaslanma: { baslik: "Hücreler yaşlanmış, kapasite kaybetmiş olabilir",
+      aciklama: "Lityum hücreler zamanla ve şarj sayısıyla kapasite kaybeder. Kapasite testiyle bataryanın ne kadar yıprandığı ölçülür; zayıf gruplar ya da tüm hücreler yenilenebilir." },
+    kullanim: { baslik: "Lastik basıncı, soğuk hava veya kullanım şekli menzili düşürüyor olabilir",
+      aciklama: "Düşük lastik basıncı, soğuk hava ve sürekli tam gazla sürüş menzili belirgin şekilde düşürür. Batarya testi, sorunun bataryada olup olmadığını netleştirir." },
+    su: { baslik: "Su teması kısa devreye yol açmış olabilir",
+      aciklama: "Su; BMS kartında, batarya soketinde veya kontrol kartında kısa devre ve oksitlenme yapar. Bekledikçe hasar büyür. Scooter'ı açmadan ve şarja takmadan en kısa sürede getirin." },
+    oncekiMudahale: { baslik: "Önceki müdahalede BMS zarar görmüş olabilir",
+      aciklama: "Batarya açıldıysa ya da balans soketi yanlış sırayla takıldıysa BMS kartının kontrol entegresi zarar görebilir." },
+    kartTarafi: { baslik: "Sorun bataryada değil, kontrol kartında veya kablolarda olabilir",
+      aciklama: "Batarya şarj oluyor ama scooter yine açılmıyorsa güç düğmesi, ana kablo veya kontrol kartı arızalı olabilir." },
+  };
+
+  // Her cevap, ilgili sebeplere puan ekler; en yüksek puanlı sebepler sonuçta gösterilir
+  const OLAYLAR = { soru: "Yakın zamanda bunlardan biri oldu mu?", secenekler: [
+    ["Islandı veya yağmurda kaldı", { su: 4 }],
+    ["Düştü veya sert darbe aldı", { baglanti: 3 }],
+    ["Batarya açıldı veya başka yerde tamir gördü", { oncekiMudahale: 3, baglanti: 1 }],
+    ["Hiçbiri", {}],
+  ]};
+
+  const SORUNLAR = [
+    { ikon: "🚨", baslik: "Batarya şişmiş, duman, yanık kokusu veya aşırı ısınma var", acil: true },
+    { ikon: "🔌", baslik: "Scooter hiç açılmıyor", temel: { grupDusuk: 1, bms: 1 }, sorular: [
+      { soru: "Scooter en son ne zaman kullanıldı veya şarj edildi?", secenekler: [
+        ["Son birkaç gün içinde", { bms: 1 }],
+        ["Birkaç haftadır kullanılmıyor", { grupDusuk: 2 }],
+        ["1 aydan uzun süredir bekliyor", { grupDusuk: 4 }],
+      ]},
+      { soru: "Şarj aletini taktığınızda ışığı ne renk yanıyor?", secenekler: [
+        ["Kırmızı (şarj ediyor gibi)", { kartTarafi: 2, bms: 1 }],
+        ["Yeşil", { bms: 2, grupDusuk: 1, baglanti: 1 }],
+        ["Hiç yanmıyor", { sarjAleti: 3 }],
+        ["Bilmiyorum / denemedim", {}],
+      ]},
+      OLAYLAR,
+    ]},
+    { ikon: "⚡", baslik: "Şarj olmuyor", temel: { sarjAleti: 1, bms: 1 }, sorular: [
+      { soru: "Şarj aletini scooter'a takmadan prize taktığınızda ışığı yanıyor mu?", secenekler: [
+        ["Evet, yanıyor", { bms: 1 }],
+        ["Hayır, hiç yanmıyor", { sarjAleti: 4 }],
+        ["Denemedim", {}],
+      ]},
+      { soru: "Şarj aletini scooter'a taktığınızda ne oluyor?", secenekler: [
+        ["Batarya dolu değilken ışık hemen yeşile dönüyor", { bms: 2, dengesizlik: 2, baglanti: 1 }],
+        ["Işık kırmızı yanıyor ama batarya yüzdesi artmıyor", { bms: 2, grupDusuk: 1, dengesizlik: 1 }],
+        ["Işık hiç yanmıyor", { sarjAleti: 2, baglanti: 1 }],
+      ]},
+      { soru: "Scooter açılıyor mu?", secenekler: [
+        ["Evet, açılıyor", { dengesizlik: 1 }],
+        ["Hayır, açılmıyor", { grupDusuk: 2, bms: 1 }],
+      ]},
+      OLAYLAR,
+    ]},
+    { ikon: "📉", baslik: "Menzil çok düştü, çabuk bitiyor", temel: { yaslanma: 1 }, sorular: [
+      { soru: "Scooter'ınız veya bataryası kaç yaşında?", secenekler: [
+        ["1 yıldan az", { kullanim: 1, dengesizlik: 1 }],
+        ["1–2 yıl", { yaslanma: 1, dengesizlik: 1 }],
+        ["2 yıldan fazla", { yaslanma: 3 }],
+      ]},
+      { soru: "Batarya göstergesi nasıl azalıyor?", secenekler: [
+        ["Düzenli azalıyor", { yaslanma: 1, kullanim: 1 }],
+        ["Aniden düşüyor (örneğin %50'den %10'a)", { zayifGrup: 3, dengesizlik: 2 }],
+        ["Gaz verince düşüyor, durunca geri yükseliyor", { zayifGrup: 3 }],
+      ]},
+      { soru: "Menzil ne zamandan beri düşük?", secenekler: [
+        ["Zamanla yavaş yavaş azaldı", { yaslanma: 2 }],
+        ["Birden düştü", { dengesizlik: 2, zayifGrup: 1, baglanti: 1 }],
+      ]},
+    ]},
+    { ikon: "⛔", baslik: "Gaz verince, yokuşta veya yolda kapanıyor", temel: { zayifGrup: 1 }, sorular: [
+      { soru: "Scooter ne zaman kapanıyor?", secenekler: [
+        ["Kalkışta veya yokuşta gaz verince", { zayifGrup: 3, akimKoruma: 2 }],
+        ["Batarya azalınca (%20–40 civarında)", { dengesizlik: 3, zayifGrup: 1 }],
+        ["Rastgele, çukurda veya darbede", { baglanti: 4 }],
+      ]},
+      { soru: "Kapandıktan sonra ne oluyor?", secenekler: [
+        ["Hemen tekrar açılıyor", { akimKoruma: 1, zayifGrup: 1 }],
+        ["Bir süre bekleyince açılıyor", { zayifGrup: 1, dengesizlik: 1 }],
+        ["Ancak şarja takınca açılıyor", { grupDusuk: 2, dengesizlik: 1 }],
+      ]},
+      OLAYLAR,
+    ]},
+  ];
+
+  const ekran = document.getElementById("ekran");
+  let sorun = null;
+  let cevaplar = []; // [soru, cevap, puanlar]
+
+  wpAyarla(document.getElementById("wpGenel"), "Merhaba, scooter bataryam için bilgi almak istiyorum.");
+  sorunEkrani();
+
+  function sorunEkrani() {
+    sorun = null;
+    cevaplar = [];
+    ekran.innerHTML = "";
+    baslik("Bataryanızda hangi sorun var?");
+    const l = liste();
+    for (const s of SORUNLAR) buton(l, s.ikon + " " + s.baslik, () => { sorun = s; s.acil ? acilSonuc() : soruEkrani(0); });
+  }
+
+  function soruEkrani(i) {
+    cevaplar = cevaplar.slice(0, i);
+    if (i >= sorun.sorular.length) return sonucEkrani();
+    const q = sorun.sorular[i];
+    ekran.innerHTML = "";
+    geri(() => (i === 0 ? sorunEkrani() : soruEkrani(i - 1)));
+    bilgi(sorun.baslik + " · Soru " + (i + 1) + " / " + sorun.sorular.length);
+    baslik(q.soru);
+    const l = liste();
+    for (const [metin, puan] of q.secenekler) buton(l, metin, () => { cevaplar[i] = [q.soru, metin, puan]; soruEkrani(i + 1); });
+  }
+
+  function sonucEkrani() {
+    const puanlar = { ...sorun.temel };
+    for (const [, , p] of cevaplar) for (const [k, v] of Object.entries(p)) puanlar[k] = (puanlar[k] || 0) + v;
+    const [ilk, ...digerleri] = Object.entries(puanlar)
+      .sort((a, b) => b[1] - a[1]).slice(0, 3).map(([k]) => SEBEPLER[k]);
+
+    ekran.innerHTML = "";
+    geri(() => soruEkrani(sorun.sorular.length - 1));
+    const d = document.createElement("div");
+    d.className = "sonuc";
+    d.innerHTML =
+      (puanlar.su ? "<span class='etiket acil'>🚨 Scooter'ı açmayın ve şarja takmayın</span>" : "") +
+      "<span class='etiket uzman'>En olası sebep</span>" +
+      "<h3>" + ilk.baslik + "</h3><p>" + ilk.aciklama + "</p>" +
+      (digerleri.length ? "<p><b>Diğer olasılıklar:</b></p><ol>" +
+        digerleri.map((s) => "<li><b>" + s.baslik + ".</b> " + s.aciklama + "</li>").join("") + "</ol>" : "") +
+      "<p>Bu tür arızaların çoğunda bataryanın tamamını değiştirmek gerekmez. Önce cihazla ölçüyoruz ve arızalı parçayı buluyoruz; fiyatı ölçümden sonra veriyoruz, onayınız olmadan tamire başlamıyoruz.</p>" +
+      "<p class='kaynak'>Bu sonuç verdiğiniz cevaplara göre yapılan bir ön değerlendirmedir; kesin teşhis ölçümle yapılır.</p>";
+    ekran.appendChild(d);
+
+    const model = document.createElement("input");
+    model.className = "ara";
+    model.placeholder = "Scooter modeliniz (isteğe bağlı, örn. Xiaomi Pro 2)";
+    model.autocomplete = "off";
+    ekran.appendChild(model);
+    const a = ozelWp();
+    const guncelle = () => wpAyarla(a, [
+      "Merhaba, batarya ön teşhis sayfasından geliyorum.",
+      "Model: " + (model.value.trim() || "-"),
+      "Sorun: " + sorun.baslik,
+      ...cevaplar.map(([s, c]) => "• " + s + " " + c),
+      "Olası sebep: " + ilk.baslik,
+    ].join("\n"));
+    model.addEventListener("input", guncelle);
+    guncelle();
+    yenidenBasla();
+  }
+
+  function acilSonuc() {
+    ekran.innerHTML = "";
+    geri(sorunEkrani);
+    const d = document.createElement("div");
+    d.className = "sonuc";
+    d.innerHTML =
+      "<span class='etiket acil'>🚨 Acil: kullanımı bırakın</span>" +
+      "<h3>" + sorun.baslik + "</h3><ol>" +
+      "<li>Scooter'ı hemen şarjdan çıkarın ve kullanmayın.</li>" +
+      "<li>Yanıcı maddelerden uzak, açık ve havadar bir yerde tutun.</li>" +
+      "<li>Bataryayı kesinlikle açmaya çalışmayın.</li>" +
+      "<li>Şişmiş bataryayı kargoya vermeyin; önce bize ulaşın.</li></ol>";
+    ekran.appendChild(d);
+    wpAyarla(ozelWp(), "Merhaba, batarya ön teşhis sayfasından geliyorum. ACİL: " + sorun.baslik + ".");
+    yenidenBasla();
+  }
+
+  // ---- yardımcılar ----
+  function buton(hedef, metin, tikla) {
+    const b = document.createElement("button");
+    b.className = "secim";
+    b.textContent = metin;
+    b.onclick = () => { tikla(); window.scrollTo({ top: 0, behavior: "smooth" }); };
+    hedef.appendChild(b);
+  }
+  function geri(f) {
+    const b = document.createElement("button");
+    b.className = "geri";
+    b.textContent = "← Geri";
+    b.onclick = f;
+    ekran.appendChild(b);
+  }
+  function yenidenBasla() {
+    const b = document.createElement("button");
+    b.className = "geri";
+    b.style.marginTop = "14px";
+    b.textContent = "↺ Baştan başla";
+    b.onclick = sorunEkrani;
+    ekran.appendChild(b);
+  }
+  function baslik(t) { const h = document.createElement("h2"); h.textContent = t; ekran.appendChild(h); }
+  function liste() { const l = document.createElement("div"); l.className = "liste"; ekran.appendChild(l); return l; }
+  function bilgi(t) { const p = document.createElement("p"); p.className = "bos"; p.textContent = t; ekran.appendChild(p); }
+  function ozelWp() {
+    const a = document.createElement("a");
+    a.className = "wp"; a.target = "_blank"; a.rel = "noopener";
+    a.textContent = "💬 Sonucu WhatsApp'tan gönder";
+    ekran.appendChild(a);
+    return a;
+  }
+  function wpAyarla(a, metin) { a.href = "https://wa.me/" + WP_NO + "?text=" + encodeURIComponent(metin); }
+</script>
+</body>
+</html>

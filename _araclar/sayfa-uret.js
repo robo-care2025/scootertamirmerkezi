@@ -32,7 +32,8 @@ const HIZMETLER = [
     aciklama: "Levent Metrocity AVM'de elektrikli scooter batarya tamiri: hücre değişimi, BMS onarımı, 36–60V bataryalar. Önce ölçüyoruz, sonra fiyat veriyoruz.",
     giris: "Şarj tutmayan, menzili düşen ya da hiç açılmayan scooter bataryalarını onarıyoruz. Bataryayı komple değiştirmeden önce ölçüyoruz; tamiri mümkün olanı değiştirmiyoruz.",
     belirtiler: ["Batarya şarj tutmuyor, çabuk bitiyor", "Menzil belirgin şekilde düştü", "Scooter hiç açılmıyor", "Şarj olmuyor, şarj aleti ışığı değişmiyor", "Gaz verince veya yokuşta kapanıyor", "Ekranda batarya / BMS ile ilgili hata kodu var"],
-    yapilanlar: ["Hücre ve hücre grubu ölçümü", "Zayıf hücrelerin değişimi", "BMS (batarya yönetim kartı) onarımı", "36V'tan 60V'a kadar scooter bataryaları"] },
+    yapilanlar: ["Hücre ve hücre grubu ölçümü", "Zayıf hücrelerin değişimi", "BMS (batarya yönetim kartı) onarımı", "36V'tan 60V'a kadar scooter bataryaları"],
+    teshisLinki: true },
   { yol: "scooter-anakart-tamiri", kisa: "Anakart tamiri",
     baslik: "Elektrikli scooter anakart (kontrol kartı) tamiri",
     aciklama: "Levent Metrocity AVM'de elektrikli scooter anakart, controller ve ekran kartı tamiri. MOSFET, hata kodları, su hasarı. Komponent seviyesinde onarım.",
@@ -91,7 +92,7 @@ const ISLETME_ID = SITE + "/#isletme";
 // Tüm sayfaların altındaki menü: hizmetler, markalar ve hata kodları
 const ALT_MENU = () => `<nav class="alt-menu"><b>Hizmetler:</b> ${HIZMETLER.map((h) => `<a href="/${h.yol}/">${kac(h.kisa)}</a>`).join(" · ")}<br>
 <b>Markalar:</b> ${Object.keys(MODELLER).map((m) => `<a href="/${slug(m)}-scooter-tamiri/">${kac(m)}</a>`).join(" · ")}<br>
-<a href="/ariza-rehberi/">Arıza rehberi</a> · <a href="/ariza-rehberi/kodlar/">Tüm hata kodları</a></nav>`;
+<a href="/ariza-rehberi/">Arıza rehberi</a> · <a href="/batarya-teshis/">Batarya ön teşhis</a> · <a href="/ariza-rehberi/kodlar/">Tüm hata kodları</a></nav>`;
 
 // Google arama sonucunda kesilmesin diye açıklamayı ~155 karakterde, kelime sınırından kısaltır
 const kisalt = (s, n = 155) => s.length <= n ? s : s.slice(0, s.lastIndexOf(" ", n - 1)).replace(/[\s,.;:(]+$/, "") + "…";
@@ -145,7 +146,7 @@ function yaz(goreli, html) {
 }
 
 fs.rmSync(CIKTI, { recursive: true, force: true });
-const urller = ["/", "/ariza-rehberi/", "/ariza-rehberi/kodlar/"];
+const urller = ["/", "/ariza-rehberi/", "/batarya-teshis/", "/ariza-rehberi/kodlar/"];
 const anaListe = [];
 
 for (const [marka, modeller] of Object.entries(MODELLER)) {
@@ -259,7 +260,8 @@ for (const h of HIZMETLER) {
 <a class="btn btn-alt" href="tel:+905356471111">📞 0535 647 11 11</a>
 <h2>Hangi durumlarda bize gelmelisiniz?</h2><ul class="madde">${h.belirtiler.map((b) => `<li>${kac(b)}</li>`).join("")}</ul>
 <h2>Neler yapıyoruz?</h2><ul class="madde">${h.yapilanlar.map((b) => `<li>${kac(b)}</li>`).join("")}</ul>
-<p>Ekranınızda bir hata kodu varsa önce <a href="/ariza-rehberi/">arıza rehberimizden</a> kodun üretici kılavuzundaki anlamına bakabilirsiniz.</p>
+<p>Ekranınızda bir hata kodu varsa önce <a href="/ariza-rehberi/">arıza rehberimizden</a> kodun üretici kılavuzundaki anlamına bakabilirsiniz.</p>${h.teshisLinki ? `
+<p>Bataryanızdaki sorunun olası sebebini merak ediyorsanız <a href="/batarya-teshis/">batarya ön teşhis</a> sayfamızdaki birkaç soruyu cevaplayın.</p>` : ""}
 ${SURECLER}
 <p class="uyari">⚠️ Batarya şişmiş, duman veya yanık kokusu varsa scooter'ı şarja takmayın ve kullanmayın. Bataryayı kargoya vermeden önce mutlaka WhatsApp'tan bilgi alın.</p>
 ${ILETISIM}`,

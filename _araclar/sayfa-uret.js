@@ -97,6 +97,16 @@ const ALT_MENU = () => `<nav class="alt-menu"><b>Hizmetler:</b> ${HIZMETLER.map(
 // Google arama sonucunda kesilmesin diye açıklamayı ~155 karakterde, kelime sınırından kısaltır
 const kisalt = (s, n = 155) => s.length <= n ? s : s.slice(0, s.lastIndexOf(" ", n - 1)).replace(/[\s,.;:(]+$/, "") + "…";
 
+// Google başlığı ~65 karakterden sonra keser. Marka eki sığmazsa düşürülür,
+// ana metin de uzunsa kelime sınırından kısaltılır.
+const EK = " | E-Scooter Tamir Merkezi";
+function basligiSigdir(ana) {
+  if ((ana + EK).length <= 65) return ana + EK;
+  if (ana.length <= 65) return ana;
+  const kes = ana.slice(0, 63);
+  return kes.slice(0, kes.lastIndexOf(" ")).replace(/[\s:,;–-]+$/, "") + "…";
+}
+
 function sayfa({ baslik, aciklama: uzunAciklama, yol, kanonik, govde, ekVeri = [] }) {
   const aciklama = kisalt(uzunAciklama);
   const kirintilar = {
@@ -120,6 +130,10 @@ function sayfa({ baslik, aciklama: uzunAciklama, yol, kanonik, govde, ekVeri = [
 <meta property="og:title" content="${kac(baslik)}">
 <meta property="og:description" content="${kac(aciklama)}">
 <meta property="og:url" content="${SITE}${kanonik}">
+<meta property="og:image" content="${SITE}/paylasim.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <style>${CSS}</style>
 ${veriler}
 </head>
@@ -168,7 +182,7 @@ for (const [marka, modeller] of Object.entries(MODELLER)) {
       const digerleri = md.kodlar.filter((r) => r[0] !== kod)
         .map((r) => `<li><a href="${modelUrl}${slug(r[0])}/"><b>${kac(r[0])}</b> · ${kac(r[1])}</a></li>`).join("");
       yaz(`${mSlug}/${mdSlug}/${slug(kod)}`, sayfa({
-        baslik: `${adi} ${kod} hatası: ${kisa} | E-Scooter Tamir Merkezi`,
+        baslik: basligiSigdir(`${adi} ${kod} hatası: ${kisa}`),
         aciklama: `${adi} ekranında ${kod} hata kodu: ${kisa}. Üretici kılavuzundaki açıklama ve onarım için Levent'teki servisimiz.`,
         kanonik: kodUrl,
         yol: [["Ana sayfa", "/"], ["Hata kodları", "/ariza-rehberi/kodlar/"], [marka, `/ariza-rehberi/kodlar/${mSlug}/`], [model, modelUrl], [kod, null]],
@@ -194,8 +208,8 @@ ${digerleri ? `<h2>${kac(adi)} diğer hata kodları</h2><ul class="liste">${dige
       : "";
     yaz(`${mSlug}/${mdSlug}`, sayfa({
       baslik: md.kodlar.length
-        ? `${adi} hata kodları ve anlamları | E-Scooter Tamir Merkezi`
-        : `${adi} arıza ve hata kodu | E-Scooter Tamir Merkezi`,
+        ? basligiSigdir(`${adi} hata kodları ve anlamları`)
+        : basligiSigdir(`${adi} arıza ve hata kodu`),
       aciklama: md.kodlar.length
         ? `${adi} elektrikli scooter hata kodları listesi (${md.kodlar.map((r) => r[0]).join(", ")}). Üretici kılavuzundan derlendi.`
         : `${adi} elektrikli scooter arızaları için Levent'teki servisimize ulaşın.`,
@@ -216,7 +230,7 @@ ${ISTEK}
   const markaUrl = `/ariza-rehberi/kodlar/${mSlug}/`;
   urller.push(markaUrl);
   yaz(mSlug, sayfa({
-    baslik: `${marka} elektrikli scooter hata kodları | E-Scooter Tamir Merkezi`,
+    baslik: basligiSigdir(`${marka} elektrikli scooter hata kodları`),
     aciklama: `${marka} elektrikli scooter modellerinin hata kodları, üretici kılavuzlarından derlendi. Levent'te kart ve batarya onarımı.`,
     kanonik: markaUrl,
     yol: [["Ana sayfa", "/"], ["Hata kodları", "/ariza-rehberi/kodlar/"], [marka, null]],
@@ -227,7 +241,7 @@ ${ISTEK}
 
 // Tüm kodlar ana sayfası
 yaz("", sayfa({
-  baslik: "Elektrikli scooter hata kodları: Onvo, Ducati, Aprilia, Xiaomi, Kukirin | E-Scooter Tamir Merkezi",
+  baslik: "Scooter hata kodları: Onvo, Ducati, Aprilia, Xiaomi, Kukirin",
   aciklama: "Elektrikli scooter hata kodlarının üretici kılavuzlarındaki anlamları. Onvo, Ducati, Aprilia, Xiaomi, Kukirin ve Segway modelleri.",
   kanonik: "/ariza-rehberi/kodlar/",
   yol: [["Ana sayfa", "/"], ["Hata kodları", null]],
@@ -249,7 +263,7 @@ for (const h of HIZMETLER) {
   const url = `/${h.yol}/`;
   urller.push(url);
   kokYaz(h.yol, sayfa({
-    baslik: `${h.baslik} | Levent, İstanbul | E-Scooter Tamir Merkezi`,
+    baslik: `Scooter ${h.kisa === "Motor ve bakım" ? "motor tamiri ve bakım" : h.kisa.toLocaleLowerCase("tr")} Levent${EK}`,
     aciklama: h.aciklama, kanonik: url,
     yol: [["Ana sayfa", "/"], [h.kisa, null]],
     ekVeri: [{ "@context": "https://schema.org", "@type": "Service", name: h.baslik, serviceType: h.baslik,
@@ -275,7 +289,7 @@ for (const [marka, modeller] of Object.entries(MODELLER)) {
   const modelListesi = Object.entries(modeller).map(([ad, md]) =>
     `<li><a href="/ariza-rehberi/kodlar/${ms}/${slug(ad)}/"><b>${kac(ad)}</b>${md.kodlar.length ? ` · ${md.kodlar.length} hata kodu` : ""}</a></li>`).join("");
   kokYaz(`${ms}-scooter-tamiri`, sayfa({
-    baslik: `${marka} scooter tamiri | Levent, İstanbul | E-Scooter Tamir Merkezi`,
+    baslik: `${marka} scooter tamiri Levent${EK}`,
     aciklama: `${marka} elektrikli scooter batarya, anakart ve motor tamiri. Levent Metrocity AVM'de ölçüm, net fiyat ve onayınızla onarım. ${marka} hata kodları rehberi.`,
     kanonik: url,
     yol: [["Ana sayfa", "/"], [`${marka} scooter tamiri`, null]],

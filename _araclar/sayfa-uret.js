@@ -257,7 +257,7 @@ function kokYaz(goreli, html) {
   fs.writeFileSync(dosya, html);
 }
 const SURECLER = `<h2>Nasıl çalışıyoruz</h2><ol class="madde"><li><b>Yazın:</b> Model ve belirtiyi WhatsApp'tan iletin.</li><li><b>Getirin:</b> Metrocity AVM, Levent (M2 Levent durağı). Türkiye'nin her yerinden kargoyla da kabul ediyoruz.</li><li><b>Ölçüm:</b> Cihazla teşhis, net fiyat.</li><li><b>Onay ve tamir:</b> Onayınız olmadan başlamayız.</li><li><b>Teslim:</b> Test sürüşüyle teslim.</li></ol>`;
-const ILETISIM = `<div class="kart"><p><b>E-Scooter Tamir Merkezi</b><br>Metrocity AVM, Büyükdere Cad. No:171, Levent, Şişli / İstanbul<br>Pazartesi–Cuma 09:00–18:00<br>Telefon: <a href="tel:+905356471111">0535 647 11 11</a></p></div>`;
+const ILETISIM = `<div class="kart"><p><b>E-Scooter Tamir Merkezi</b><br>Metrocity AVM, Büyükdere Cad. No:171, Levent, Şişli / İstanbul<br>Pazartesi–Cuma 10:00–18:00<br>Telefon: <a href="tel:+905356471111">0535 647 11 11</a></p></div>`;
 
 for (const h of HIZMETLER) {
   const url = `/${h.yol}/`;
